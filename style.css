@@ -1,0 +1,21 @@
+
+
+body {
+	font-family: sans-serif;
+	background:#ffffff url("tankMan.jpg") no-repeat center center;
+	margin: 0; padding: 0;
+}
+
+input {
+	border: none;
+	margin: 10px 0;
+	color: #ff0099;
+}
+
+#formulaire {
+
+	color: #fff;
+	background-color: #ff0099;
+	padding: 20px;
+
+}
