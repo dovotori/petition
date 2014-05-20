@@ -4,18 +4,47 @@ body {
 	font-family: sans-serif;
 	background:#ffffff url("tankMan.jpg") no-repeat center center;
 	margin: 0; padding: 0;
+	text-align: center;
+}
+
+section {
+	width: 80%;
+	max-width: 400px; 
+	margin: 0 auto;
+	background-color: rgba(0, 0, 0, 0.8);	
+	color: #fff;
+	padding: 4%;
+	text-align: left;
 }
 
 input {
 	border: none;
 	margin: 10px 0;
-	color: #ff0099;
+	color: #000000;
 }
 
-#formulaire {
+.SIGNE {
+	cursor: pointer;
+	padding: 10px;
+	margin-right: 10px;
+	background-color: #666;
+}
 
-	color: #fff;
-	background-color: #ff0099;
-	padding: 20px;
 
+#VALID {
+	margin-top: 10px;
+	text-align: center;
+	cursor: pointer;
+	width: 100px;
+	padding: 10px;
+	background-color: #666;
+}
+
+#VALID:hover, .SIGNE:hover {
+	background-color: #aaaaaa;
+}
+
+
+#NEWS {
+	display: none;
 }

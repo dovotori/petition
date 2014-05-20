@@ -1,3 +1,19 @@
+<?
+
+    session_start();
+    session_destroy();
+
+
+    $compteur_file = fopen('compteur.txt', 'r+'); 
+    $compteur = fgets($compteur_file);
+
+
+
+?>
+
+
+
+
 <!DOCTYPE>
 <html>
 
@@ -9,16 +25,7 @@
     <body>
 
 
-<?
 
- 
-    $compteur_file = fopen('compteur.txt', 'r+'); 
-    $compteur = fgets($compteur_file);
-
-
-    echo "<h5>Deja ".$compteur." signature(s).</h5>";
-
-?>
 
 
 
@@ -28,7 +35,10 @@
 <section id="formulaire">
 
     <form action="merci.php" method="post" name="formulaire_signature" novalidate><!-- target="blank" // nouvel onglet -->
-    	<h3>Signez la pétition</h3>
+    	<h3>Signez la pétition.</h3>
+
+        <h5>Déjà <?php echo $compteur; ?> signature(s).</h5>
+
 
         <div class="petition_champs">
         	<input type="email" value="EMAIL" name="EMAIL" id="EMAIL">
@@ -39,14 +49,20 @@
         <div class="petition_champs">
         	<input type="text" value="LAST NAME" name="LNAME" id="LNAME">
         </div>
-        <div>
-            <input type="checkbox" name="OPTIN" checked /> <label for="case">Voulez vous vous abonner à notre newsletter.</label>
-        </div>
+
         <div id="VALID">Validez</div>
 
         <br/>
-        <!-- ON VALIDE -->
-        <input style="display:none;" type="submit" id="SIGNE" value="Signez" name="signez" class="button"></div>
+
+        <div id="NEWS">
+            <p>Voulez-vous vous abonner à notre newsletter?</p>
+                <!-- ON VALIDE -->
+            <input class="SIGNE" type="submit" value="OUI" name="OUI" class="button">
+            <input class="SIGNE" type="submit" value="NON" name="NON" class="button">
+        </div>
+
+        <br/>
+        
 
     </form>
 
@@ -54,11 +70,14 @@
 
 
 
+<?php fclose($compteur_file); ?>
+
+
 
 <script type="text/javascript">
 
 
-
+// gestion des interactions avec les champs du formulaire
 
 var Email = document.getElementById("EMAIL");
 var Fname = document.getElementById("FNAME");
@@ -67,6 +86,7 @@ var Lname = document.getElementById("LNAME");
 Email.addEventListener("click", effacerChamp, false);
 Fname.addEventListener("click", effacerChamp, false);
 Lname.addEventListener("click", effacerChamp, false);
+document.addEventListener("click", reset, false);
 
 
 function effacerChamp()
@@ -101,11 +121,40 @@ function getValider()
     } 
 
     else {
-        document.getElementById("SIGNE").style.display = "block";
+        var News = document.getElementById("NEWS");
+        News.style.display =  "block";
     }
-
     
 }
+
+
+function reset(event) {
+
+    if(event.target.id != "EMAIL")
+    {
+        if(Email.value == ""){
+            Email.value = "EMAIL";
+        }
+    } 
+    if(event.target.id != "LNAME")
+    {
+        if(Lname.value == ""){
+            Lname.value = "LNAME";
+        }
+    }
+    if(event.target.id != "FNAME")
+    {
+        if(Fname.value == ""){
+            Fname.value = "FNAME";
+        }
+        
+    }
+}
+
+
+
+
+
 
 
 </script>
